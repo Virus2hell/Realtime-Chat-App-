@@ -1,5 +1,14 @@
 import express from "express"
+import dotenv from "dotenv";
 
-const app = express()
+import authRoutes from "./routes/auth.route"
 
-app.listen(3001, () => console.log("Server running on port 3001"))
+dotenv.config();
+
+const app = express();
+
+const PORT = process.env.PORT || 3001
+
+app.use("/api/auth", authRoutes);
+
+app.listen(3001, () => console.log("Server running on port " + PORT))
